@@ -160,7 +160,7 @@ public class ItemBag {
 	 * @throws RemoteServerException the remote server exception
 	 * @throws LoginFailedException  the login failed exception
 	 */
-	public void useIncense(ItemId type) throws RemoteServerException, LoginFailedException {
+	public UseIncenseResponse useIncense(ItemId type) throws RemoteServerException, LoginFailedException {
 		UseIncenseMessage useIncenseMessage =
 				UseIncenseMessage.newBuilder()
 						.setIncenseType(type)
@@ -178,6 +178,7 @@ public class ItemBag {
 		} catch (InvalidProtocolBufferException e) {
 			throw new RemoteServerException(e);
 		}
+		return response;
 	}
 
 
@@ -187,8 +188,8 @@ public class ItemBag {
 	 * @throws RemoteServerException the remote server exception
 	 * @throws LoginFailedException  the login failed exception
 	 */
-	public void useIncense() throws RemoteServerException, LoginFailedException {
-		useIncense(ItemId.ITEM_INCENSE_ORDINARY);
+	public UseIncenseResponse useIncense() throws RemoteServerException, LoginFailedException {
+		return useIncense(ItemId.ITEM_INCENSE_ORDINARY);
 	}
 
 	/**
